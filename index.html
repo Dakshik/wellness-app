@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wellness App</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://www.gstatic.com/firebasejs/9.20.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.20.0/firebase-auth.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to Wellness</h1>
+        <button id="login-button">Log in with Google</button>
+    </div>
+
+    <script>
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyB8ViYOhDI_4mMJMkHTSTJdH32nGNaZknA",
+            authDomain: "wellness-app-a96ef.firebaseapp.com",
+            projectId: "wellness-app-a96ef",
+            storageBucket: "wellness-app-a96ef.appspot.com",
+            messagingSenderId: "838276742907",
+            appId: "1:838276742907:web:610cbd653d4f808e3cfa5e",
+            measurementId: "G-YL2M7LP6NF"
+        };
+
+        // Initialize Firebase
+        const app = firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+
+        // Sign in with Google
+        document.getElementById('login-button').addEventListener('click', () => {
+            const provider = new firebase.auth.GoogleAuthProvider();
+            auth.signInWithPopup(provider)
+                .then((result) => {
+                    // Successful login
+                    const user = result.user;
+                    console.log("User logged in: ", user);
+                })
+                .catch((error) => {
+                    console.error("Error signing in: ", error);
+                });
+        });
+    </script>
+</body>
+</html>
