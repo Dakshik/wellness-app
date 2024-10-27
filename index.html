@@ -5,8 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wellness App</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="https://www.gstatic.com/firebasejs/9.20.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.20.0/firebase-auth.js"></script>
+
+    <!-- Firebase App (the core Firebase SDK) -->
+    <script src="https://www.gstatic.com/firebasejs/9.20.0/firebase-app-compat.js"></script>
+    <!-- Firebase Authentication -->
+    <script src="https://www.gstatic.com/firebasejs/9.20.0/firebase-auth-compat.js"></script>
 </head>
 <body>
     <div class="container">
@@ -15,7 +18,7 @@
     </div>
 
     <script>
-        // Your web app's Firebase configuration
+        // Firebase configuration for your app
         const firebaseConfig = {
             apiKey: "AIzaSyB8ViYOhDI_4mMJMkHTSTJdH32nGNaZknA",
             authDomain: "wellness-app-a96ef.firebaseapp.com",
@@ -27,13 +30,12 @@
         };
 
         // Initialize Firebase
-        const app = firebase.initializeApp(firebaseConfig);
-        const auth = firebase.auth();
+        firebase.initializeApp(firebaseConfig);
 
-        // Sign in with Google
+        // Set up Google sign-in
         document.getElementById('login-button').addEventListener('click', () => {
             const provider = new firebase.auth.GoogleAuthProvider();
-            auth.signInWithPopup(provider)
+            firebase.auth().signInWithPopup(provider)
                 .then((result) => {
                     // Successful login
                     const user = result.user;
